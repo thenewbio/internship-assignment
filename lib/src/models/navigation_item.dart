@@ -1,3 +1,4 @@
+import 'package:bh_assignment/src/screens/coin_screen.dart';
 import 'package:bh_assignment/src/screens/home_screen.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -12,10 +13,9 @@ class NavigatorItem {
 
 List<NavigatorItem> navigatorItems = [
   NavigatorItem("Home", "assets/icons/homes.png", 0, const HomeScreen()),
-  NavigatorItem(
-      "Coins", "assets/icons/coins.png", 1, Center(child: Text('Coins'))),
-  NavigatorItem(
-      "Wallet", "assets/icons/wallets.png", 3, Center(child: Text('Wallet'))),
-  NavigatorItem(
-      "You", "assets/icons/customer.png", 4, Center(child: Text('Person'))),
+  NavigatorItem("Coins", "assets/icons/coins.png", 1, CoinScreen()),
+  NavigatorItem("Wallet", "assets/icons/wallets.png", 2,
+      const Center(child: Text('Wallet'))),
+  NavigatorItem("You", "assets/icons/customer.png", 3,
+      const Center(child: Text('Person'))),
 ];

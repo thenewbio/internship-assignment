@@ -49,7 +49,7 @@ class _BottonNavScreenState extends State<BottonNavScreen> {
   }
 
   Widget getNavigationBarItem({String? label, String? iconPath, int? index}) {
-    Color iconColor = index == page ? Colors.blue : Colors.black;
+    Color iconColor = index == page ? Colors.blue.shade900 : Colors.black;
     return FittedBox(
       child: Column(
         children: [
