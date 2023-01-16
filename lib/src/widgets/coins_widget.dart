@@ -65,7 +65,7 @@ class _CoinValue1State extends State<CoinValue1> {
   Widget build(BuildContext context) {
     return CoinPrice1(
       color: Colors.orange,
-      stream: widget.provider.bitcoinStream,
+      stream: widget.provider.coinStream,
     );
   }
 }

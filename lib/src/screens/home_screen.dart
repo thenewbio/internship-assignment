@@ -1,7 +1,5 @@
-import 'package:bh_assignment/src/screens/coin_screen.dart';
 import 'package:bh_assignment/src/widgets/coins_widget.dart';
 import 'package:bh_assignment/src/widgets/iconbutton_widget.dart';
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 

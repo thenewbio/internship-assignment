@@ -4,21 +4,18 @@ import 'package:bh_assignment/src/models/amipy_coin_model.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 
 class AmipyCoinProvider {
-  late final WebSocketChannel _btcWebsocket;
-
-  // static const _btcProduct = "BTCINR";
+  late final WebSocketChannel _coinWebsocket;
 
   AmipyCoinProvider()
-      : _btcWebsocket = WebSocketChannel.connect(
+      : _coinWebsocket = WebSocketChannel.connect(
           Uri.parse('wss://prereg.ex.api.ampiy.com/prices'),
         );
 
-  Stream<AmipyModel> get bitcoinStream => _btcWebsocket.stream
+  Stream<AmipyModel> get coinStream => _coinWebsocket.stream
       .map<AmipyModel>((value) => AmipyModel.fromJson(jsonDecode(value)));
-  // .skipWhile((element) => element.productId != 1);
 
   void openCoin() {
-    _btcWebsocket.sink.add(
+    _coinWebsocket.sink.add(
       jsonEncode({
         "method": "SUBSCRIBE",
         "params": ["all@ticker"],
@@ -28,6 +25,6 @@ class AmipyCoinProvider {
   }
 
   void closeCoin() {
-    _btcWebsocket.sink.close();
+    _coinWebsocket.sink.close();
   }
 }

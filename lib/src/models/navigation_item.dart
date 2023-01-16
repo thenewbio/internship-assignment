@@ -17,5 +17,5 @@ List<NavigatorItem> navigatorItems = [
   NavigatorItem("Wallet", "assets/icons/wallets.png", 2,
       const Center(child: Text('Wallet'))),
   NavigatorItem("You", "assets/icons/customer.png", 3,
-      const Center(child: Text('Person'))),
+      const Center(child: Text('Profile'))),
 ];

@@ -21,7 +21,7 @@ class _CoinValueState extends State<CoinValue> {
   Widget build(BuildContext context) {
     return CoinPrice(
       color: Colors.orange,
-      stream: widget.provider.bitcoinStream,
+      stream: widget.provider.coinStream,
     );
   }
 }
@@ -56,95 +56,80 @@ class CoinPrice extends StatelessWidget {
                 itemBuilder: (context, index) {
                   return Card(
                     child: Container(
-                      padding: const EdgeInsets.only(left: 5, right: 5),
-                      height: 70,
-                      width: double.maxFinite,
-                      // elevation: 2,
-                      color: snapshot.data!.data![index]!.p!.startsWith('0')
-                          ? Colors.black.withOpacity(0.09)
-                          : Colors.white38,
-                      child: Row(
-                        children: [
-                          SizedBox(
-                              width: 120,
-                              child: ListTile(
-                                leading: CircleAvatar(
-                                  backgroundImage:
-                                      NetworkImage(coinList[index].image),
-                                ),
-                                title: Text(
-                                    '${snapshot.data!.data![index]!.s}'
-                                        .substring(0, 3),
-                                    style: const TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 15.0,
-                                      fontWeight: FontWeight.bold,
-                                    )),
-                                subtitle: Text(coinList[index].title,
-                                    style: const TextStyle(
-                                      color: Colors.grey,
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.normal,
-                                    )),
-                              )),
-                          Expanded(
-                            child: SizedBox(
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  SizedBox(
-                                    child: Text(
-                                        '₹${snapshot.data!.data![index]!.c}',
-                                        style: const TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 15.0,
-                                          fontWeight: FontWeight.normal,
-                                        )),
-                                  ),
-                                  FittedBox(
-                                    child: Container(
-                                      width: 70,
-                                      decoration: BoxDecoration(
-                                          border:
-                                              Border.all(color: Colors.grey)),
-                                      child: FittedBox(
-                                        child: Row(
-                                          children: [
-                                            Text(
-                                                snapshot.data!.data![index]!.p!
-                                                            .startsWith('0') ||
-                                                        snapshot.data!
-                                                            .data![index]!.p!
-                                                            .startsWith('1')
-                                                    ? "↓"
-                                                    : "↑",
-                                                style: TextStyle(
-                                                  color: checkCoin(snapshot
-                                                      .data!.data![index]!.p!),
-                                                  fontSize: 24.0,
-                                                  fontWeight: FontWeight.normal,
-                                                )),
-                                            Text(
-                                                '${snapshot.data!.data![index]!.p}%',
-                                                style: TextStyle(
-                                                  color: checkCoin(snapshot
-                                                      .data!.data![index]!.p!),
-                                                  fontSize: 15.0,
-                                                  fontWeight: FontWeight.normal,
-                                                )),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
+                        height: 70,
+                        width: double.maxFinite,
+                        // elevation: 2,
+                        color: snapshot.data!.data![index]!.p!.startsWith('0')
+                            ? Colors.black.withOpacity(0.09)
+                            : Colors.white38,
+                        child: ListTile(
+                          leading: CircleAvatar(
+                            backgroundImage:
+                                NetworkImage(coinList[index].image),
                           ),
-                        ],
-                      ),
-                    ),
+                          title: Text(
+                              '${snapshot.data!.data![index]!.s}'
+                                  .substring(0, 3),
+                              style: const TextStyle(
+                                color: Colors.black,
+                                fontSize: 15.0,
+                                fontWeight: FontWeight.bold,
+                              )),
+                          subtitle: Text(coinList[index].title,
+                              style: const TextStyle(
+                                color: Colors.grey,
+                                fontSize: 12,
+                                fontWeight: FontWeight.normal,
+                              )),
+                          trailing: FittedBox(
+                              child: Row(children: [
+                            SizedBox(
+                              child: Text('₹${snapshot.data!.data![index]!.c}',
+                                  style: const TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 15.0,
+                                    fontWeight: FontWeight.normal,
+                                  )),
+                            ),
+                            const SizedBox(
+                              width: 5,
+                            ),
+                            FittedBox(
+                                child: Container(
+                                    padding: const EdgeInsets.all(8),
+                                    width: 70,
+                                    decoration: BoxDecoration(
+                                        border: Border.all(color: Colors.grey)),
+                                    child: FittedBox(
+                                      child: Row(
+                                        children: [
+                                          Text(
+                                              snapshot.data!.data![index]!.p!
+                                                          .startsWith('0') ||
+                                                      snapshot.data!
+                                                          .data![index]!.p!
+                                                          .startsWith('-')
+                                                  ? "↓"
+                                                  : "↑",
+                                              style: TextStyle(
+                                                color: checkCoin(snapshot
+                                                    .data!.data![index]!.p!),
+                                                fontSize: 24.0,
+                                                fontWeight: FontWeight.normal,
+                                              )),
+                                          Text(
+                                              '${snapshot.data!.data![index]!.p}%',
+                                              style: TextStyle(
+                                                color: checkCoin(snapshot
+                                                    .data!.data![index]!.p!),
+                                                fontSize: 15.0,
+                                                fontWeight: FontWeight.normal,
+                                              )),
+                                        ],
+                                      ),
+                                    )))
+                          ])),
+                        )),
                   );
                 });
           }
